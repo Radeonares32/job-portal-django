@@ -25,8 +25,9 @@ def register(req):
             password1 = form.cleaned_data['password1']
             password2 = form.cleaned_data['password2']
             if password1 == password2:
-                is_exist_user = get_user_model().objects.filter(email=email, username=f'{first_name} {last_name}')
-                if is_exist_user.exists():
+                is_exist_user = get_user_model().objects.filter(email=email)
+                is_exist_user_username = get_user_model().objects.filter(username=f'{first_name} {last_name}')
+                if is_exist_user.exists() or is_exist_user_username.exists():
                     return HttpResponseRedirect('register?message=user_exists')
                 else:
                     user = CustomUser.objects.create_user(first_name=first_name, last_name=last_name, email=email,
@@ -115,8 +116,9 @@ def business_register(req):
             password = form.cleaned_data['password']
             password_repeat = form.cleaned_data['password_repeat']
             if password == password_repeat:
-                is_exist_user = get_user_model().objects.filter(email=email, username=f'{first_name} {last_name}')
-                if is_exist_user.exists():
+                is_exist_user = get_user_model().objects.filter(email=email)
+                is_exist_user_username = get_user_model().objects.filter(username=f'{first_name} {last_name}')
+                if is_exist_user.exists() or is_exist_user_username.exists():
                     return HttpResponseRedirect('business-register?message=user_exists')
                 else:
                     user = CustomUser.objects.create_user(first_name=first_name, last_name=last_name, email=email,
