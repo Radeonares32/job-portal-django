@@ -1,0 +1,50 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+	
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+	<section class="inner-banner" style="backend:#242c36 url(https://via.placeholder.com/1920x600)no-repeat;">
+		<div class="container">
+			<div class="caption">
+				<h2>Get your jobs</h2>
+			</div>
+		</div>
+	</section>
+	
+	<section class="jobs">
+		<div class="container">
+			<div class="row heading">
+				<h2>Find Popular Jobs</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+			</div>
+			 <div class="companies">
+
+                {% for posts in post %}
+                    <div class="company-list">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-10">
+                                <div class="company-content">
+                                    <h3><a href="{% url 'companies-detail' posts.id %}">{{ posts.title }}<span
+                                            class="full-time">{{ posts.tags }}</span></a></h3>
+                                    <p><span class="company-name"><i
+                                            class="fa fa-briefcase"></i>{{ posts.businesses.business_name }}</span><span
+                                            class="company-location"><i
+                                            class="fa fa-map-marker"></i> {{ posts.address }}</span></p>
+                                    {% if posts in post_control%}
+
+                                        <button disabled class="btn btn-warning">Already applying</button>
+                                        {% else %}
+
+                                        <a  href="{% url 'student-apply' posts.id %}" class="btn btn-warning">Apply</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+		</div>
+	</section>
+
+
+{% endblock content %}

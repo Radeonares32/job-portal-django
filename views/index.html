@@ -1,0 +1,133 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <section class="main-banner" style="background:#242c36 url(img/slider-01.jpg) no-repeat">
+        <div class="container">
+            <div class="caption">
+                <h2>
+                    Build your career
+                    </h2>
+                <form action="{% url 'companies_list' %}" method="get">
+                    <fieldset>
+                        <div class="col-md-10 col-sm-10 no-pad">
+                            <input type="text" name="search" class="form-control border-right"
+                                   placeholder="Skills"/>
+                        </div>
+
+
+                        <div class="col-md-2 col-sm-2 no-pad">
+                            <input type="submit" class="btn seub-btn" value="Ara"/>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="col-md-4 col-sm-4">
+                <div class="features-content">
+                    <span class="box1"><span aria-hidden="true" class="icon-dial"></span></span>
+                    <h3>Create Account </h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore
+                        et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="features-content">
+                    <span class="box1"><span aria-hidden="true" class="icon-search"></span></span>
+                    <h3>
+                        Search Desired Job</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore
+                        et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="features-content">
+                    <span class="box1"><span aria-hidden="true" class="icon-printer"></span></span>
+                    <h3>Submit Your Resume</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore
+                        et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="features-content">
+                    <span class="box1"><span aria-hidden="true" class="icon-dial"></span></span>
+                    <h3>Create Account</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore
+                        et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="features-content">
+                    <span class="box1"><span aria-hidden="true" class="icon-search"></span></span>
+                    <h3>Submit Your Resume</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore
+                        et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="features-content">
+                    <span class="box1"><span aria-hidden="true" class="icon-printer"></span></span>
+                    <h3>Search Desired Job</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore
+                        et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="jobs">
+        <div class="container">
+            <div class="row heading">
+                <h2>Newly Added Jobs</h2>
+            </div>
+            <div class="companies">
+
+                {% for posts in post %}
+                    <div class="company-list">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-10">
+                                <div class="company-content">
+                                    <h3><a href="{% url 'companies-detail' posts.id %}">{{ posts.title }}<span
+                                            class="full-time">{{ posts.tags }}</span></a></h3>
+                                    <p><span class="company-name"><i
+                                            class="fa fa-briefcase"></i>{{ posts.businesses.business_name }}</span><span
+                                            class="company-location"><i
+                                            class="fa fa-map-marker"></i> {{ posts.address }}</span></p>
+                                    {% if posts in post_control%}
+
+                                        <button disabled class="btn btn-warning">Already applying</button>
+                                        {% else %}
+
+                                        <a  href="{% url 'student-apply' posts.id %}" class="btn btn-warning">Apply</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <div class="row">
+                <a href="{% url 'companies' %}" class="btn brows-btn">All Jobs</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+{% endblock content %}

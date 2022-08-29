@@ -1,0 +1,39 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+    <!-- login section start -->
+    <section class="login-wrapper">
+        <div class="container">
+
+            <img class="img-responsive" alt="logo" src=" {% static 'img/logo.png' %}">
+
+
+            <div class="companies">
+
+                {% for posts in post %}
+                    <div class="company-list">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-10">
+                                <div class="company-content">
+                                    <h3><a href="{% url 'companies-detail' posts.id %}">{{ posts.title }}<span
+                                            class="full-time">{{ posts.tags }}</span></a></h3>
+                                    <p><span class="company-name"><i
+                                            class="fa fa-briefcase"></i>{{ posts.businesses.business_name }}</span><span
+                                            class="company-location"><i
+                                            class="fa fa-map-marker"></i> {{ posts.address }}</span></p>
+                                    {% if posts in post_control%}
+
+                                        <button disabled class="btn btn-warning">Already applying</button>
+                                        {% else %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+		</div>
+
+    </section>
+    <!-- login section End -->
+{% endblock content %}

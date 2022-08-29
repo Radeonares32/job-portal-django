@@ -1,0 +1,61 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <section class="inner-banner" style="backend:#242c36 url(https://via.placeholder.com/1920x600)no-repeat;">
+        <div class="container">
+            <div class="caption">
+                <h2>Get your jobs</h2>
+                <p>Get your Popular jobs <span>202 New job</span></p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="profile-detail">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="basic-information">
+                        <div class="col-md-3 col-sm-3">
+                            <img src="{{ post.get.businesses.image.url }}" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9 col-sm-9">
+                            <div class="profile-content">
+                                <h2> <a href="{% url 'business-profile-detail' post.get.businesses.slug  %}"> {{ post.get.businesses.business_name }}</a></h2>
+
+                                <ul class="information">
+                                    <li><span>Address:</span>{{ post.get.address }}</li>
+                                    <li><span>Mail:</span>{{ post.get.businesses.user.email }}</li>
+                                    <li><span>Phone:</span>{{ post.get.businesses.phone }}</li>
+                                    <li><span>About:</span>{{ post.get.businesses.about }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <ul class="social">
+                            <li></li>
+                            <li></li>
+                            <li> {% if post.get in post_control %}
+
+                                <button disabled class="btn btn-warning">Already applying</button>
+                            {% else %}
+
+                                <a href="{% url 'student-apply' post.get.id %}" class="btn btn-warning">Apply</a>
+                            {% endif %}</li>
+                            <li></li>
+                        </ul>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-user fa-fw"></i> About
+                            </div>
+                            <div class="panel-body">
+                                <p> {{ post.get.description }}.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+    <!-- login section start -->
+    <section class="login-wrapper">
+        <div class="container">
+
+            <img class="img-responsive" alt="logo" src=" {% static 'img/logo.png' %}">
+
+
+            <div class="companies">
+                {% for post in business %}
+                    <div class="company-list">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-10">
+                                <div class="company-content">
+                                    <h3><a>{{ post.title }}<span
+                                            class="full-time">{{ post.tags }}</span></a></h3>
+                                    <p><span class="company-name"><i
+                                            class="fa fa-briefcase"></i>{{ post.businesses.business_name }}</span><span
+                                            class="company-location"><i
+                                            class="fa fa-map-marker"></i> {{ post.address }}</span></p>
+                                    <a href="{% url 'business-post-update' post.id %}" class="btn btn-warning">Edit</a>
+                                    <a href="{% url 'business-post-delete' post.id %}" class="btn btn-danger">Delete</a>
+                                     <a href="{% url 'business-list-students' post.id %}" class="btn btn-warning">Students</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+
+    </section>
+    <!-- login section End -->
+{% endblock content %}
